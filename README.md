@@ -1,2 +1,2 @@
-# retail-trends-analysis
+# retail-macro-forecasting
 Final Project for DAT5501
