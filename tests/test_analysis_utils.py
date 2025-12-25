@@ -20,7 +20,7 @@ def test_polynomial_model_output_structure():
     X_test = np.array([4, 5])
     y_test = np.array([5, 6])
 
-    polynomials, mse_values = fit_polynomial_models(X_train, y_train, X_test, y_test)
+    polynomials, mse_values, _, _, _ = fit_polynomial_models(X_train, y_train, X_test, y_test)
 
     # Correct number of models
     assert len(polynomials) == 3
@@ -36,7 +36,7 @@ def test_polynomial_models_are_callable():
     X_test = np.array([3])
     y_test = np.array([9])
 
-    polynomials, _ = fit_polynomial_models(X_train, y_train, X_test, y_test)
+    polynomials, _, _, _, _ = fit_polynomial_models(X_train, y_train, X_test, y_test)
 
     for model in polynomials.values():
         assert callable(model)
@@ -47,7 +47,7 @@ def test_mse_values_are_floats():
     X_test = np.array([3])
     y_test = np.array([9])
 
-    _, mse_values = fit_polynomial_models(X_train, y_train, X_test, y_test)
+    _, mse_values, _, _, _ = fit_polynomial_models(X_train, y_train, X_test, y_test)
 
     for mse in mse_values.values():
         assert isinstance(mse, float)
@@ -60,7 +60,7 @@ def test_perfect_polynomial_fit():
     X_test = np.array([4, 5])
     y_test = X_test**2
 
-    _, mse_values = fit_polynomial_models(X_train, y_train, X_test, y_test, orders=[1, 2, 3])
+    _, mse_values, _, _, _ = fit_polynomial_models(X_train, y_train, X_test, y_test, orders=[1, 2, 3])
 
     # Degree 2 should be perfect
     assert mse_values[2] < 1e-10
